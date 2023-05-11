@@ -58,11 +58,31 @@ public class MouseThread implements Runnable {
                             else
                                 clickTwo[0] = clickOne[0] + 1;
                             clickTwo[1] = clickOne[1];
+                            if(clickOne[0] == 0 || clickTwo[0] == 0){
+                                if(clickOne[1] == 5)
+                                    panel.getData().getSquares(0, 4).setEast(true);
+                                else {
+                                    panel.getData().getSquares(0, clickOne[1]).setWest(true);
+
+                                }
+                            } else if (clickOne[0] == 5 || clickTwo[0] == 5) {
+                                if(clickOne[1] == 5)
+                                    panel.getData().getSquares(4, 4).setEast(true);
+                                else {
+                                    panel.getData().getSquares(4, clickOne[1]).setWest(true);
+
+                                }
+                            }
+                            System.out.println("WEST: " + panel.getData().getSquares(0, 0).getWest() );
+                            System.out.println("EAST: " + panel.getData().getSquares(0, 0).getEast() );
                             //data.getSquares(0, 0).setNorth(true);
                         }
                         //clickOne[0] -= 1;
                         //clickTwo[0] -= 1;
-                        panel.drawLine(panel.getGraphics(), clickOne, clickTwo);
+                        if(player == 0)
+                            panel.drawLine(panel.getGraphics(), clickOne, clickTwo, Color.BLACK);
+                        else
+                            panel.drawLine(panel.getGraphics(), clickOne, clickTwo, Color.RED);
                         try {
                             con.getOs().writeObject(new CommandFromClient(CommandFromClient.MOVE, new Move(player, clickOne, clickTwo)));
                             System.out.println("Hihihihihih");

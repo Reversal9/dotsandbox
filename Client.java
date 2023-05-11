@@ -53,9 +53,9 @@ public class Client {
                     Move data = (Move) cmd.getData();
                     System.out.println(data.getPlayer());
                     if (data.getPlayer() == GameData.PLAYER_1) {
-                        frame.drawLine(data.getFirst(), data.getSecond());
+                        frame.drawLine(data.getFirst(), data.getSecond(), Color.black);
                     } else {
-                        frame.drawLine(data.getFirst(), data.getSecond());
+                        frame.drawLine(data.getFirst(), data.getSecond(), Color.RED);
                     }
                     //System.out.println(Arrays.deepToString(board));
                 } else if(cmd.getCommand() == CommandFromServer.P1_TURN && PLAYER == CommandFromServer.CONNECTED_AS_P1) {

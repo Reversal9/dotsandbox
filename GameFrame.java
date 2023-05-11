@@ -69,7 +69,7 @@ public class GameFrame extends JFrame {
     }
 
 
-    public void drawLine(int[] first, int[] second) {
-        panel.drawLine(panel.getGraphics(), first, second);
+    public void drawLine(int[] first, int[] second, Color color) {
+        panel.drawLine(panel.getGraphics(), first, second, color);
     }
 }

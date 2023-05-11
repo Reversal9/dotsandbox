@@ -12,7 +12,7 @@ public class GamePanel extends JPanel {
     private static final int SPACE = 75;
     private static final int OFFSET = CIRCLE_SIZE / 2;
     private static final int OFFSET2 = 50;
-    public GameData data;
+    public GameData data = new GameData();
     //endregion
 
     public GamePanel() {
@@ -38,6 +38,10 @@ public class GamePanel extends JPanel {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         drawBoard(g);
+    }
+
+    public GameData getData(){
+        return data;
     }
 
     public int[] getCell(Point p) {
@@ -90,10 +94,11 @@ public class GamePanel extends JPanel {
         return loc;
     }
 
-    public void drawLine(Graphics g, int[] first, int[] second) {
+    public void drawLine(Graphics g, int[] first, int[] second, Color color) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(10));
-        g2.setColor(Color.RED);
+
+        g2.setColor(color);
         Point loc1 = getPoint(first[0], first[1]);
         Point loc2 = getPoint(second[0], second[1]);
         g2.drawLine(loc1.y, loc1.x, loc2.y, loc2.x);
