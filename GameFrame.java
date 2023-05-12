@@ -68,6 +68,8 @@ public class GameFrame extends JFrame {
         panel.drawWait(panel.getGraphics());
     }
 
+    public void updateScore(){panel.updateScore(panel.getGraphics(), panel.getData().playerOneScore, panel.getData().getPlayerTwoScore());}
+
 
     public void drawLine(int[] first, int[] second, Color color) {
         panel.drawLine(panel.getGraphics(), first, second, color);

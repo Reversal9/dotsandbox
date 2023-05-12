@@ -4,6 +4,8 @@ public class GameData {
     public static Squares[][] grid = new Squares[5][5];
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
+    public int playerOneScore = 0;
+    public int playerTwoScore = 0;
     public int turn;
 
     public static ArrayList<Tuple> repeated;
@@ -112,8 +114,12 @@ public class GameData {
     }
 
     public void updateStates(Squares square, int player){
-        if(square.getState() == 0 && square.getEast() && square.getNorth() && square.getSouth() && square.getWest() && square.getState() == 0) {
+        if(square.getState() == 0 && square.getEast() && square.getNorth() && square.getSouth() && square.getWest()) {
             square.setState(player);
+            if(player == GameData.PLAYER_1)
+                playerOneScore++;
+            else
+                playerTwoScore++;
             justCompletedBox = true;
         }
     }
@@ -130,7 +136,6 @@ public class GameData {
     public void fixSides(int player){
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[0].length; c++) {
-                updateStates(grid[r][c], player);
                 if(c - 1 >= 0 && grid[r][c-1].getEast())
                     grid[r][c].setWest(true);
                 if(c + 1 < grid[0].length && grid[r][c+1].getWest())
@@ -139,7 +144,16 @@ public class GameData {
                     grid[r][c].setNorth(true);
                 if(r + 1 < grid.length && grid[r+1][c].getNorth())
                     grid[r][c].setSouth(true);
+                updateStates(grid[r][c], player);
             }
         }
+    }
+
+    public int getPlayerOneScore(){
+        return playerOneScore;
+    }
+
+    public int getPlayerTwoScore(){
+        return playerTwoScore;
     }
 }

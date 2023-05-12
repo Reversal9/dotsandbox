@@ -140,17 +140,26 @@ public class Server {
                                     }
                                 }
                                 game.fixSides(GameData.PLAYER_1);
+
                             }
                             game.printState();
                             broadcast(new CommandFromServer(CommandFromServer.MOVE, new Move(GameData.PLAYER_1, move.getFirst(), move.getSecond(), false)));
 //                            if (!move.getAgain())
+                            if (!game.justCompletedBox) {
                                 switchTurns();
+                                if (game.isFinished()) break;
+                            }else {
+                                game.justCompletedBox = false;
+                                if (game.isFinished()) break;
+                            }
+                            if (game.isFinished()) break;
                         } else {
                             continue;
                         }
                         //PLAYER_ONE.getIs().reset();
                         System.out.println(Arrays.deepToString(game.getGrid()));
                         System.out.println(game.isFinished());
+                        if (game.isFinished()) break;
                     } else if (turn == GameData.PLAYER_2) {
                         System.out.println("P2 Turn");
                         if (game.isFinished()) break;
@@ -260,8 +269,17 @@ public class Server {
                             }
                             game.printState();
                             broadcast(new CommandFromServer(CommandFromServer.MOVE, new Move(GameData.PLAYER_2, move.getFirst(), move.getSecond(), false)));
-//                            if (!move.getAgain())
+
+                            if (!game.justCompletedBox) {
                                 switchTurns();
+                                if (game.isFinished()) break;
+
+                            }else {
+                                game.justCompletedBox = false;
+                                if (game.isFinished()) break;
+
+                            }
+//                            if (!move.getAgain())
                             if (game.isFinished()) break;
                         }
                         //PLAYER_TWO.getIs().reset();
@@ -285,7 +303,7 @@ public class Server {
                     }
 
                     broadcast(new CommandFromServer(CommandFromServer.REQUEST_RESTART, null));
-
+                    System.out.println("reset");
                     CommandFromClient r1 = (CommandFromClient) PLAYER_ONE.getIs().readObject();
                     CommandFromClient r2 = (CommandFromClient) PLAYER_TWO.getIs().readObject();
                     if (r1.getCommand() == r2.getCommand() && r1.getCommand() == CommandFromClient.RESTART) {

@@ -41,6 +41,7 @@ public class Client {
 
             while (true) {
                 CommandFromServer cmd = (CommandFromServer) ois.readObject();
+                System.out.println(cmd.getCommand());
                 if (!start) {
                     start = true;
                     frame.reset();
@@ -189,6 +190,7 @@ public class Client {
 
                     System.exit(0);
                 } else if (cmd.getCommand() == CommandFromServer.REQUEST_RESTART) {
+                    System.out.println("restarted");
                     frame.drawRestart();
                     if (pressRestart) {
                         frame.reset();
