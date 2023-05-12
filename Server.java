@@ -34,7 +34,7 @@ public class Server {
                 if (!game.isFinished()) {
                     if (turn == GameData.PLAYER_1) {
                         System.out.println("P1 turn");
-                        if (game.isFinished()) break;
+
                         //P1
                         broadcast(new CommandFromServer(CommandFromServer.P1_TURN, null));
                         CommandFromClient cfc = (CommandFromClient) PLAYER_ONE.getIs().readObject();
@@ -147,22 +147,22 @@ public class Server {
 //                            if (!move.getAgain())
                             if (!game.justCompletedBox) {
                                 switchTurns();
-                                if (game.isFinished()) break;
+
                             }else {
                                 game.justCompletedBox = false;
-                                if (game.isFinished()) break;
+
                             }
-                            if (game.isFinished()) break;
+
                         } else {
                             continue;
                         }
                         //PLAYER_ONE.getIs().reset();
                         System.out.println(Arrays.deepToString(game.getGrid()));
                         System.out.println(game.isFinished());
-                        if (game.isFinished()) break;
+
                     } else if (turn == GameData.PLAYER_2) {
                         System.out.println("P2 Turn");
-                        if (game.isFinished()) break;
+
                         //P2
                         broadcast(new CommandFromServer(CommandFromServer.P2_TURN, null));
                         CommandFromClient cfc = (CommandFromClient) PLAYER_TWO.getIs().readObject();
@@ -272,20 +272,20 @@ public class Server {
 
                             if (!game.justCompletedBox) {
                                 switchTurns();
-                                if (game.isFinished()) break;
+
 
                             }else {
                                 game.justCompletedBox = false;
-                                if (game.isFinished()) break;
+
 
                             }
 //                            if (!move.getAgain())
-                            if (game.isFinished()) break;
+
                         }
                         //PLAYER_TWO.getIs().reset();
                         System.out.println(Arrays.deepToString(game.getGrid()));
                         System.out.println(game.isFinished());
-                        if (game.isFinished()) break;
+
                     }
 
                 } else {

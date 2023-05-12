@@ -163,12 +163,14 @@ public class Client {
                     MouseThread t = new MouseThread(GameData.PLAYER_1, connection, frame);
                     t.run();
                     frame.drawTurn();
+                    frame.updateScore();
                 } else if(cmd.getCommand() == CommandFromServer.P2_TURN && PLAYER == CommandFromServer.CONNECTED_AS_P2) {
                     System.out.println("Your turn");
                     frame.drawTurn();
                     MouseThread t = new MouseThread(GameData.PLAYER_2, connection, frame);
                     t.run();
                     frame.drawTurn();
+                    frame.updateScore();
                 } else if (cmd.getCommand() == CommandFromServer.P1_WINS || cmd.getCommand() == CommandFromServer.P2_WINS ||
                         cmd.getCommand() == CommandFromServer.TIE) {
                     frame.drawEnd(cmd.getCommand());

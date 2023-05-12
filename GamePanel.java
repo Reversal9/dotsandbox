@@ -119,13 +119,13 @@ public class GamePanel extends JPanel {
     public void updateScore(Graphics g, int playerOneScore, int playerTwoScore){
         String scoreOne = "One Score: " + playerOneScore;
         String scoreTwo = "Two Score: " + playerTwoScore;
-        Font font = new Font(Font.SERIF, Font.PLAIN,  40);
+        Font font = new Font(Font.SERIF, Font.PLAIN,  20);
         FontMetrics metrics = g.getFontMetrics(font);
-        int x = 20;
-        int y = 10;
+        int x = 50;
+        int y = 30;
         g.setFont(font);
         g.drawString(scoreOne, x, y);
-        g.drawString(scoreTwo, x, y + 30);
+        g.drawString(scoreTwo, x, y + 20);
     }
 
     public void drawEndGame(Graphics g, int state) {
