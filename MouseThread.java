@@ -52,6 +52,43 @@ public class MouseThread implements Runnable {
                             else
                                 clickTwo[1] = clickOne[1] + 1;
                             clickTwo[0] = clickOne[0];
+                            if(clickOne[1] == 0 || clickTwo[1] == 0){
+                                if(clickOne[0] == 5)
+                                    panel.getData().getSquares(4, 0).setSouth(true);
+                                else {
+                                    panel.getData().getSquares(clickOne[0], 0).setNorth(true);
+                                    System.out.print("jkjbbbbbbskds");;
+                                }
+                            } else if (clickOne[1] == 5 || clickTwo[1] == 5) {
+                                System.out.print("jksdjsslslsls");;
+                                if(clickOne[0] == 5)
+                                    panel.getData().getSquares(4, 4).setSouth(true);
+                                else {
+                                    panel.getData().getSquares(clickOne[0], 4).setNorth(true);
+
+                                }
+                            } else if (clickOne[1] == 4 || clickTwo[1] == 4) {
+                                if(clickOne[0] == 5)
+                                    panel.getData().getSquares(4, 3).setSouth(true);
+                                else {
+                                    panel.getData().getSquares(clickOne[0], 3).setNorth(true);
+
+                                }
+                            } else if (clickOne[1] == 3 || clickTwo[1] == 3) {
+                                if(clickOne[0] == 5)
+                                    panel.getData().getSquares(4, 2).setSouth(true);
+                                else {
+                                    panel.getData().getSquares(clickOne[0], 2).setNorth(true);
+
+                                }
+                            } else if (clickOne[1] == 2 || clickTwo[1] == 2) {
+                                if(clickOne[0] == 5)
+                                    panel.getData().getSquares(4, 1).setSouth(true);
+                                else {
+                                    panel.getData().getSquares(clickOne[0], 1).setNorth(true);
+
+                                }
+                            }
                         } else {
                             if (clickTwo[0] - clickOne[0] < 0)
                                 clickTwo[0] = clickOne[0] - 1;
@@ -72,13 +109,31 @@ public class MouseThread implements Runnable {
                                     panel.getData().getSquares(4, clickOne[1]).setWest(true);
 
                                 }
+                            } else if (clickOne[0] == 4 || clickTwo[0] == 4) {
+                                if(clickOne[1] == 5)
+                                    panel.getData().getSquares(3, 4).setEast(true);
+                                else {
+                                    panel.getData().getSquares(3, clickOne[1]).setWest(true);
+
+                                }
+                            } else if (clickOne[0] == 3 || clickTwo[0] == 3) {
+                                if(clickOne[1] == 5)
+                                    panel.getData().getSquares(2, 4).setEast(true);
+                                else {
+                                    panel.getData().getSquares(2, clickOne[1]).setWest(true);
+
+                                }
+                            } else if (clickOne[0] == 2 || clickTwo[0] == 2) {
+                                if(clickOne[1] == 5)
+                                    panel.getData().getSquares(1, 4).setEast(true);
+                                else {
+                                    panel.getData().getSquares(1, clickOne[1]).setWest(true);
+
+                                }
                             }
-                            System.out.println("WEST: " + panel.getData().getSquares(0, 0).getWest() );
-                            System.out.println("EAST: " + panel.getData().getSquares(0, 0).getEast() );
-                            //data.getSquares(0, 0).setNorth(true);
                         }
-                        //clickOne[0] -= 1;
-                        //clickTwo[0] -= 1;
+                        panel.getData().fixSides();
+                        panel.getData().printState();
                         if(player == 0)
                             panel.drawLine(panel.getGraphics(), clickOne, clickTwo, Color.BLACK);
                         else
