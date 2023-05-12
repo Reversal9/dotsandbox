@@ -164,7 +164,11 @@ public class MouseThread implements Runnable {
                         else
                             panel.drawLine(panel.getGraphics(), clickOne, clickTwo, Color.RED);
                         try {
-                            con.getOs().writeObject(new CommandFromClient(CommandFromClient.MOVE, new Move(player, clickOne, clickTwo)));
+                            if (panel.getData().justCompletedBox) {
+                                con.getOs().writeObject(new CommandFromClient(CommandFromClient.MOVE, new Move(player, clickOne, clickTwo, true)));
+                            } else {
+                                con.getOs().writeObject(new CommandFromClient(CommandFromClient.MOVE, new Move(player, clickOne, clickTwo, false)));
+                            }
                             System.out.println("Hihihihihih");
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);

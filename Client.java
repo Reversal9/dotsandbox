@@ -171,6 +171,7 @@ public class Client {
                 } else if (cmd.getCommand() == CommandFromServer.P1_WINS || cmd.getCommand() == CommandFromServer.P2_WINS ||
                         cmd.getCommand() == CommandFromServer.TIE) {
                     frame.drawEnd(cmd.getCommand());
+                    System.out.println("drew end");
                 } else if (cmd.getCommand() == CommandFromServer.SHUT_DOWN) {
                     System.out.println("Hi");
                     frame.drawShutDown();
@@ -200,6 +201,7 @@ public class Client {
                     t.run();
                 }
                 //ois.reset();
+
             }
 
         } catch (IOException | ClassNotFoundException e) {

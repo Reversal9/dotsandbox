@@ -8,6 +8,8 @@ public class GameData {
 
     public static ArrayList<Tuple> repeated;
 
+    public boolean justCompletedBox;
+
     static class Tuple {
         public int[] first;
         public int[] second;
@@ -56,11 +58,19 @@ public class GameData {
     public boolean isFinished(){
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[0].length; c++) {
-                if(grid[r][c].getState() == 0)
+                if(!grid[r][c].getNorth() || !grid[r][c].getSouth() ||!grid[r][c].getEast() ||!grid[r][c].getWest())
                     return false;
             }
         }
         return true;
+
+//        for (int r = 0; r < grid.length; r++) {
+//            for (int c = 0; c < grid[0].length; c++) {
+//                if(grid[r][c].getState() == 0)
+//                    return false;
+//            }
+//        }
+//        return true;
     }
 
     public static int hasWon()
@@ -102,15 +112,17 @@ public class GameData {
     }
 
     public void updateStates(Squares square, int player){
-        if(square.getEast() && square.getNorth() && square.getSouth() && square.getWest() && square.getState() == 0)
+        if(square.getState() == 0 && square.getEast() && square.getNorth() && square.getSouth() && square.getWest() && square.getState() == 0) {
             square.setState(player);
+            justCompletedBox = true;
+        }
     }
 
     public void printState(){
         for (int r = 0; r < grid.length; r++) {
             System.out.println("--------------------------------------------");
             for (int c = 0; c < grid[0].length; c++) {
-                System.out.print("E:" + grid[r][c].getEast() + " W: " + grid[r][c].getWest() + " N: " + grid[r][c].getNorth() + " S: " + grid[r][c].getSouth() + " || ");
+                System.out.print("State: " + grid[r][c].getState() +"E:" + grid[r][c].getEast() + " W: " + grid[r][c].getWest() + " N: " + grid[r][c].getNorth() + " S: " + grid[r][c].getSouth() + " || ");
             }
         }
     }
