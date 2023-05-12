@@ -103,6 +103,7 @@ public class GamePanel extends JPanel {
         Point loc2 = getPoint(second[0], second[1]);
         g2.drawLine(loc1.y, loc1.x, loc2.y, loc2.x);
         System.out.println("Line drawn");
+        data.hasRepeated(first, second);
     }
 
     public void drawWait(Graphics g) {

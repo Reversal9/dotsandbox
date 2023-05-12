@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameData {
@@ -6,15 +7,43 @@ public class GameData {
     public static final int PLAYER_2 = 2;
     public int turn;
 
+    public static ArrayList<Tuple> repeated;
+
+    class Tuple {
+        public int[] first;
+        public int[] second;
+
+        public Tuple(int[] first, int[] second) {
+            this.first = first;
+            this.second = second;
+        }
+    }
+
     public GameData() {
         reset();
     }
 
     public void reset() {
         grid = new Squares[5][5];
+        repeated = new ArrayList<>();
         for (Squares[] rowColumn : grid) {
-            Arrays.fill(rowColumn, new Squares());
+            for (int i = 0; i < rowColumn.length; i++) {
+                rowColumn[i] = new Squares();
+            }
         }
+    }
+
+    public boolean hasRepeated(int[] first, int[] second) {
+        for (var a : repeated) {
+            if (a.first[0] == first[0] && a.first[1] == first[1] && a.second[0] == second[0] && a.second[1] == second[1]) {
+                return true;
+            } else if (a.first[0] == second[0] && a.first[1] == second[1] && a.second[0] == first[0] && a.second[1] == first[1]) {
+                return true;
+            }
+        }
+        repeated.add(new Tuple(first, second));
+        repeated.add(new Tuple(second, first));
+        return false;
     }
 
     public Squares[][] getGrid() {
@@ -80,10 +109,10 @@ public class GameData {
 
     public void printState(){
         for (int r = 0; r < grid.length; r++) {
+            System.out.println("--------------------------------------------");
             for (int c = 0; c < grid[0].length; c++) {
-                System.out.print("EAST: " + grid[r][c].getEast() + "WEST: " + grid[r][c].getWest() + "NORTH: " + grid[r][c].getNorth() + "SOUTH: " + grid[r][c].getSouth());
+                System.out.print("E:" + grid[r][c].getEast() + " W: " + grid[r][c].getWest() + " N: " + grid[r][c].getNorth() + " S: " + grid[r][c].getSouth() + " || ");
             }
-
         }
     }
 

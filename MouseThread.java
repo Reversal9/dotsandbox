@@ -44,6 +44,10 @@ public class MouseThread implements Runnable {
                         }
                         clickTwo = panel.getCell(e.getPoint());
                     }
+
+
+                    //start here
+                    //alreaedy have the points
                     System.out.println("Hihihihihih");
                     if(!(clickOne[0] <= -1 || clickOne[1] <= -1 || clickTwo[0] <= -1 || clickTwo[1] <= -1)) {
                         if (Math.abs(clickTwo[1] - clickOne[1]) >= Math.abs(clickTwo[0] - clickOne[0])) {
@@ -52,6 +56,12 @@ public class MouseThread implements Runnable {
                             else
                                 clickTwo[1] = clickOne[1] + 1;
                             clickTwo[0] = clickOne[0];
+
+                            if (panel.getData().hasRepeated(clickOne, clickTwo)) {
+                                clickOne = clickTwo = null;
+                                return;
+                            }
+
                             if(clickOne[1] == 0 || clickTwo[1] == 0){
                                 if(clickOne[0] == 5)
                                     panel.getData().getSquares(4, 0).setSouth(true);
@@ -95,6 +105,12 @@ public class MouseThread implements Runnable {
                             else
                                 clickTwo[0] = clickOne[0] + 1;
                             clickTwo[1] = clickOne[1];
+
+                            if (panel.getData().hasRepeated(clickOne, clickTwo)) {
+                                clickOne = clickTwo = null;
+                                return;
+                            }
+
                             if(clickOne[0] == 0 || clickTwo[0] == 0){
                                 if(clickOne[1] == 5)
                                     panel.getData().getSquares(0, 4).setEast(true);

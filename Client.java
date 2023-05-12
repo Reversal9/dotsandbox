@@ -58,6 +58,103 @@ public class Client {
                         frame.drawLine(data.getFirst(), data.getSecond(), Color.RED);
                     }
                     //System.out.println(Arrays.deepToString(board));
+
+                    System.out.println("Hihihihihih");
+                    if(!(data.getFirst()[0] <= -1 || data.getFirst()[1] <= -1 || data.getSecond()[0] <= -1 || data.getSecond()[1] <= -1)) {
+                        if (Math.abs(data.getSecond()[1] - data.getFirst()[1]) >= Math.abs(data.getSecond()[0] - data.getFirst()[0])) {
+                            if (data.getSecond()[1] - data.getFirst()[1] < 0)
+                                data.getSecond()[1] = data.getFirst()[1] - 1;
+                            else
+                                data.getSecond()[1] = data.getFirst()[1] + 1;
+                            data.getSecond()[0] = data.getFirst()[0];
+
+                            if (data.getFirst()[1] == 0 || data.getSecond()[1] == 0) {
+                                if (data.getFirst()[0] == 5)
+                                    frame.panel.getData().getSquares(4, 0).setSouth(true);
+                                else {
+                                    frame.panel.getData().getSquares(data.getFirst()[0], 0).setNorth(true);
+                                    System.out.print("jkjbbbbbbskds");
+                                    ;
+                                }
+                            } else if (data.getFirst()[1] == 5 || data.getSecond()[1] == 5) {
+                                System.out.print("jksdjsslslsls");
+                                ;
+                                if (data.getFirst()[0] == 5)
+                                    frame.panel.getData().getSquares(4, 4).setSouth(true);
+                                else {
+                                    frame.panel.getData().getSquares(data.getFirst()[0], 4).setNorth(true);
+
+                                }
+                            } else if (data.getFirst()[1] == 4 || data.getSecond()[1] == 4) {
+                                if (data.getFirst()[0] == 5)
+                                    frame.panel.getData().getSquares(4, 3).setSouth(true);
+                                else {
+                                    frame.panel.getData().getSquares(data.getFirst()[0], 3).setNorth(true);
+
+                                }
+                            } else if (data.getFirst()[1] == 3 || data.getSecond()[1] == 3) {
+                                if (data.getFirst()[0] == 5)
+                                    frame.panel.getData().getSquares(4, 2).setSouth(true);
+                                else {
+                                    frame.panel.getData().getSquares(data.getFirst()[0], 2).setNorth(true);
+
+                                }
+                            } else if (data.getFirst()[1] == 2 || data.getSecond()[1] == 2) {
+                                if (data.getFirst()[0] == 5)
+                                    frame.panel.getData().getSquares(4, 1).setSouth(true);
+                                else {
+                                    frame.panel.getData().getSquares(data.getFirst()[0], 1).setNorth(true);
+
+                                }
+                            }
+                        } else {
+                            if (data.getSecond()[0] - data.getFirst()[0] < 0)
+                                data.getSecond()[0] = data.getFirst()[0] - 1;
+                            else
+                                data.getSecond()[0] = data.getFirst()[0] + 1;
+                            data.getSecond()[1] = data.getFirst()[1];
+
+                            if (data.getFirst()[0] == 0 || data.getSecond()[0] == 0) {
+                                if (data.getFirst()[1] == 5)
+                                    frame.panel.getData().getSquares(0, 4).setEast(true);
+                                else {
+                                    frame.panel.getData().getSquares(0, data.getFirst()[1]).setWest(true);
+
+                                }
+                            } else if (data.getFirst()[0] == 5 || data.getSecond()[0] == 5) {
+                                if (data.getFirst()[1] == 5)
+                                    frame.panel.getData().getSquares(4, 4).setEast(true);
+                                else {
+                                    frame.panel.getData().getSquares(4, data.getFirst()[1]).setWest(true);
+
+                                }
+                            } else if (data.getFirst()[0] == 4 || data.getSecond()[0] == 4) {
+                                if (data.getFirst()[1] == 5)
+                                    frame.panel.getData().getSquares(3, 4).setEast(true);
+                                else {
+                                    frame.panel.getData().getSquares(3, data.getFirst()[1]).setWest(true);
+
+                                }
+                            } else if (data.getFirst()[0] == 3 || data.getSecond()[0] == 3) {
+                                if (data.getFirst()[1] == 5)
+                                    frame.panel.getData().getSquares(2, 4).setEast(true);
+                                else {
+                                    frame.panel.getData().getSquares(2, data.getFirst()[1]).setWest(true);
+
+                                }
+                            } else if (data.getFirst()[0] == 2 || data.getSecond()[0] == 2) {
+                                if (data.getFirst()[1] == 5)
+                                    frame.panel.getData().getSquares(1, 4).setEast(true);
+                                else {
+                                    frame.panel.getData().getSquares(1, data.getFirst()[1]).setWest(true);
+
+                                }
+                            }
+                        }
+                        frame.panel.getData().fixSides(PLAYER);
+                    }
+
+
                 } else if(cmd.getCommand() == CommandFromServer.P1_TURN && PLAYER == CommandFromServer.CONNECTED_AS_P1) {
                     System.out.println("Your turn");
                     frame.drawTurn();
