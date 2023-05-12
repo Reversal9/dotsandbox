@@ -1,2 +1,2 @@
 # dotsandbox
-dots and boxes are very cool
+dots and boxes are NOT very cool

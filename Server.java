@@ -79,9 +79,12 @@ public class Server {
                     int status = GameData.hasWon();
                     if (status == GameData.PLAYER_1) {
                         broadcast(new CommandFromServer(CommandFromServer.P1_WINS, null));
+                        System.out.println(PLAYER_ONE + " wins");
                     } else if (status == GameData.PLAYER_2) {
                         broadcast(new CommandFromServer(CommandFromServer.P2_WINS, null));
+                        System.out.println(PLAYER_TWO + " wins");
                     } else {
+                        System.out.println("Tie");
                         broadcast(new CommandFromServer(CommandFromServer.TIE, null));
                     }
 

@@ -102,8 +102,8 @@ public class GameData {
         return answer;
     }
 
-    public void updateState(Squares square, int player){
-        if(square.getEast() && square.getNorth() && square.getSouth() && square.getWest())
+    public void updateStates(Squares square, int player){
+        if(square.getEast() && square.getNorth() && square.getSouth() && square.getWest() && square.getState() == 0)
             square.setState(player);
     }
 
@@ -116,12 +116,13 @@ public class GameData {
         }
     }
 
-    public void fixSides(){
+    public void fixSides(int player){
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[0].length; c++) {
+                updateStates(grid[r][c], player);
                 if(c - 1 >= 0 && grid[r][c-1].getEast())
                     grid[r][c].setWest(true);
-                if(c + 1 < grid[0].length - 1 && grid[r][c+1].getWest())
+                if(c + 1 < grid[0].length && grid[r][c+1].getWest())
                     grid[r][c].setEast(true);
                 if(r - 1 >= 0 && grid[r-1][c].getSouth())
                     grid[r][c].setNorth(true);

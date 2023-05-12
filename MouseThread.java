@@ -29,6 +29,19 @@ public class MouseThread implements Runnable {
     @Override
     public void run() {
         try {
+            /*if(panel.getData().isFinished()){
+                /*try {
+                    if(panel.getData().hasWon() == 1)
+                        con.getOs().writeObject(new CommandFromServer(CommandFromServer.P1_WINS, null));
+                    else if(panel.getData().hasWon() == 2)
+                        con.getOs().writeObject(new CommandFromServer(CommandFromServer.P2_WINS, null));
+                    else
+                        con.getOs().writeObject(new CommandFromServer(CommandFromServer.TIE, null));
+                    //con.getOs().writeObject(new CommandFromClient(CommandFromClient.,null));
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }*/
             ml = new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -148,7 +161,9 @@ public class MouseThread implements Runnable {
                                 }
                             }
                         }
-                        panel.getData().fixSides();
+                        panel.getData().fixSides(player);
+                        //end here
+                       // panel.getData().updateStates(panel.getData().getSquares());
                         panel.getData().printState();
                         if(player == 0)
                             panel.drawLine(panel.getGraphics(), clickOne, clickTwo, Color.BLACK);
@@ -192,7 +207,7 @@ public class MouseThread implements Runnable {
                 }
             };
             frame.addMouseListener(ml);
-        } catch (Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }

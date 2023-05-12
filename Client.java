@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -208,7 +209,7 @@ public class Client {
         }
     }
 
-    public static int dropAtCol(int[] first, int[] second, int player) {
+        public static int dropAtCol(int[] first, int[] second, int player) {
         //edit board implement
         return 0;
     }
