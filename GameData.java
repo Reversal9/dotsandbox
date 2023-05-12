@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class GameData {
     public static Squares[][] grid = new Squares[5][5];
@@ -9,7 +8,7 @@ public class GameData {
 
     public static ArrayList<Tuple> repeated;
 
-    class Tuple {
+    static class Tuple {
         public int[] first;
         public int[] second;
 

@@ -1,13 +1,7 @@
-import com.sun.security.jgss.GSSUtil;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.Arrays;
 
 public class MouseThread implements Runnable {
@@ -80,10 +74,10 @@ public class MouseThread implements Runnable {
                                     panel.getData().getSquares(4, 0).setSouth(true);
                                 else {
                                     panel.getData().getSquares(clickOne[0], 0).setNorth(true);
-                                    System.out.print("jkjbbbbbbskds");;
+                                    System.out.print("jkjbbbbbbskds");
                                 }
                             } else if (clickOne[1] == 5 || clickTwo[1] == 5) {
-                                System.out.print("jksdjsslslsls");;
+                                System.out.print("jksdjsslslsls");
                                 if(clickOne[0] == 5)
                                     panel.getData().getSquares(4, 4).setSouth(true);
                                 else {
