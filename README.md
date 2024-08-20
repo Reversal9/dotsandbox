@@ -1,2 +1,2 @@
 # dotsandbox
-dots and boxes are NOT very cool
+Dots and Boxes game created with Java
